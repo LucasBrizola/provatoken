@@ -26,5 +26,15 @@ public class SqlService {
         return parentsName;
     }
 
+    public List<String> getAllFathersNamesWithMoreThanOneChild(){
+        Collection<Parent> parents = this.parentRepository.findAllFathersNamesWithMoreThanOneChild();
+        List<String> parentsName = new ArrayList<>();
+        for (Parent parent: parents
+        ) {
+            parentsName.add(parent.getName());
+        }
+        return parentsName;
+    }
+
 
 }

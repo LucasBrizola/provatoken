@@ -29,4 +29,13 @@ public class SqlTest {
         Assertions.assertIterableEquals(parents,parentsFather);
     }
 
+    @Test
+    @DisplayName("showListOfAllFathersWithMoreThanOneChild")
+    public void shouldReturnListOfAllFathersWithMoreThanOneChild(){
+        List<String> parents = sqlService.getAllFathersNamesWithMoreThanOneChild();
+        List<String> parentsFather = List.of("John");
+
+        Assertions.assertIterableEquals(parents,parentsFather);
+    }
+
 }

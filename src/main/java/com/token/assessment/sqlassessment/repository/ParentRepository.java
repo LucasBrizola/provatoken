@@ -14,4 +14,10 @@ public interface ParentRepository extends JpaRepository<Parent, Long> {
     nativeQuery = true)
     Collection<Parent> findAllFathersNames();
 
+    @Query(value = "SELECT p.NAME, p.ID FROM CHILD c\n" +
+            "INNER JOIN PARENT p ON c.FATHER_ID = p.ID\n" +
+            "GROUP BY FATHER_ID HAVING COUNT( * )>1;",
+            nativeQuery = true)
+    Collection<Parent> findAllFathersNamesWithMoreThanOneChild();
+
 }
