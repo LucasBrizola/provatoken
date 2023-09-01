@@ -53,4 +53,10 @@ public class TasksController {
         List<Person> namesReversed = tasksService.reverseList(Arrays.asList(namesArray));
         return new ResponseEntity<>(namesReversed, HttpStatus.ACCEPTED);
     }
+
+    @GetMapping(value = "/task4")
+    public ResponseEntity<String[]> task4() {
+        String[] names = tasksService.readFile();
+        return new ResponseEntity<>(names, HttpStatus.ACCEPTED);
+    }
 }

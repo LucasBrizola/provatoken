@@ -18,14 +18,14 @@ public class TasksTest {
     static Person person2;
     static Person person3;
     static Person person4;
-    static TasksService task1;
+    static TasksService tasks;
     @BeforeAll
     public static void setup(){
         person1 =  PersonFactory.createPerson("Lucas");
         person2 =  PersonFactory.createPerson("Matheus");
         person3 =  PersonFactory.createPerson("Pedro");
         person4 =  PersonFactory.createPerson("Paulo");
-        task1 = new TasksService();
+        tasks = new TasksService();
     }
     @Test
     @DisplayName("receiveArrayAndReturnAnotherReversed")
@@ -33,7 +33,7 @@ public class TasksTest {
         Person[] names = { person1, person2, person3, person4};
         Person[] namesReversed = {person4, person3, person2, person1};
 
-        Person[] namesReturned = task1.reverseNewArray(names);
+        Person[] namesReturned = tasks.reverseNewArray(names);
 
         Assertions.assertArrayEquals(namesReturned,namesReversed);
 
@@ -45,7 +45,7 @@ public class TasksTest {
         Person[] names = { person1, person2, person3, person4};
         Person[] namesReversed = {person4, person3, person2, person1};
 
-        Person[] namesReturned = task1.reverseSameArray(names);
+        Person[] namesReturned = tasks.reverseSameArray(names);
 
         Assertions.assertArrayEquals(namesReturned,namesReversed);
 
@@ -57,7 +57,7 @@ public class TasksTest {
         List<Person> names = Arrays.asList( person1, person2, person3, person4);
         List<Person> namesReversed = Arrays.asList( person4, person3, person2, person1);
 
-        List<Person> namesReturned = task1.reverseList(names);
+        List<Person> namesReturned = tasks.reverseList(names);
 
         Assertions.assertIterableEquals(namesReturned,namesReversed);
 
@@ -70,9 +70,18 @@ public class TasksTest {
         List<Person> names = new LinkedList<>((Arrays.asList( person1, person2, person3, person4)));
         List<Person> namesReversed = Arrays.asList( person4, person3, person2, person1);
 
-        List<Person> namesReturned = task1.manualReverseList(names);
+        List<Person> namesReturned = tasks.manualReverseList(names);
 
         Assertions.assertIterableEquals(namesReturned,namesReversed);
 
+    }
+
+    @Test
+    @DisplayName("shouldReceiveACsvFile")
+    public void shouldReceiveACsvFile(){
+        String[] namesReturned = tasks.readFile();
+        String[] names = {person1.getName(), person2.getName(), person3.getName(), person4.getName()};
+
+        Assertions.assertArrayEquals(namesReturned, names);
     }
 }
