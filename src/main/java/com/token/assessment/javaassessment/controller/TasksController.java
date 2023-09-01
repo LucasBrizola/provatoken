@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Arrays;
+import java.util.List;
+
 @RestController
 @RequestMapping("/tasks")
 public class TasksController {
@@ -41,6 +44,13 @@ public class TasksController {
     public ResponseEntity<Person[]> task2(@RequestBody String[] names) {
         Person[] namesArray = createArrayFromStrings(names);
         Person[] namesReversed = tasksService.reverseSameArray(namesArray);
+        return new ResponseEntity<>(namesReversed, HttpStatus.ACCEPTED);
+    }
+
+    @GetMapping(value = "/task3")
+    public ResponseEntity<List<Person>> task3(@RequestBody String[] names) {
+        Person[] namesArray = createArrayFromStrings(names);
+        List<Person> namesReversed = tasksService.reverseList(Arrays.asList(namesArray));
         return new ResponseEntity<>(namesReversed, HttpStatus.ACCEPTED);
     }
 }

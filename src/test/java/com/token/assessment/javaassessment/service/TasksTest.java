@@ -8,6 +8,10 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+
 @SpringBootTest
 public class TasksTest {
     static Person person1;
@@ -44,6 +48,31 @@ public class TasksTest {
         Person[] namesReturned = task1.reverseSameArray(names);
 
         Assertions.assertArrayEquals(namesReturned,namesReversed);
+
+    }
+
+    @Test
+    @DisplayName("receiveListAndReturnSameReversed")
+    public void shouldReceiveAListAndReturnSameReversed(){
+        List<Person> names = Arrays.asList( person1, person2, person3, person4);
+        List<Person> namesReversed = Arrays.asList( person4, person3, person2, person1);
+
+        List<Person> namesReturned = task1.reverseList(names);
+
+        Assertions.assertIterableEquals(namesReturned,namesReversed);
+
+    }
+
+    @Test
+    @DisplayName("receiveListAndReturnSameManualReversed")
+    public void shouldReceiveAListAndReturnSameManualReversed(){
+        //Arrays.asList are unmodifiable (no add or remove), so LinkedList was needed
+        List<Person> names = new LinkedList<>((Arrays.asList( person1, person2, person3, person4)));
+        List<Person> namesReversed = Arrays.asList( person4, person3, person2, person1);
+
+        List<Person> namesReturned = task1.manualReverseList(names);
+
+        Assertions.assertIterableEquals(namesReturned,namesReversed);
 
     }
 }
