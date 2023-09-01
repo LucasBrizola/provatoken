@@ -16,18 +16,31 @@ public class TasksController {
 
     private final TasksService tasksService;
 
-    public TasksController(TasksService tasksService){
+    public TasksController(TasksService tasksService) {
         this.tasksService = tasksService;
     }
-    @GetMapping(value = "/task1")
-    public ResponseEntity<Person[]> task1(@RequestBody String[] names){
+
+    public Person[] createArrayFromStrings(String[] names){
         Person[] namesArray = new Person[names.length];
-        int i =0;
-        for (String name: names) {
+        int i = 0;
+        for (String name : names) {
             namesArray[i] = PersonFactory.createPerson(name);
             i++;
         }
+        return namesArray;
+    }
+
+    @GetMapping(value = "/task1")
+    public ResponseEntity<Person[]> task1(@RequestBody String[] names) {
+        Person[] namesArray = createArrayFromStrings(names);
         Person[] namesReversed = tasksService.reverseNewArray(namesArray);
+        return new ResponseEntity<>(namesReversed, HttpStatus.ACCEPTED);
+    }
+
+    @GetMapping(value = "/task2")
+    public ResponseEntity<Person[]> task2(@RequestBody String[] names) {
+        Person[] namesArray = createArrayFromStrings(names);
+        Person[] namesReversed = tasksService.reverseSameArray(namesArray);
         return new ResponseEntity<>(namesReversed, HttpStatus.ACCEPTED);
     }
 }
