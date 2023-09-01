@@ -3,9 +3,6 @@ package com.token.assessment.sqlassessment.model;
 import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 
-import java.util.HashSet;
-import java.util.Set;
-
 @Entity
 @Table(name = "CHILD")
 public class Child {

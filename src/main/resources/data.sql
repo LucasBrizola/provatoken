@@ -8,6 +8,6 @@ VALUES (1, 'John'),
 INSERT INTO CHILD (ID, NAME, FATHER_ID, MOTHER_ID)
 VALUES (1, 'John', 1, 3),
        (2, 'Paul', 1, 3),
-       (3, 'Mary', 2, 4),
-       (4, 'Lucy', 1, 4),
-       (5, 'Mark', NULL, 4);
+       (3, 'Lucy', 2, 4),
+       (4, 'Claire', 1, 4),
+       (5, 'Simon', NULL, 4);
