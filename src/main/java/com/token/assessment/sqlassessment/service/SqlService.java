@@ -65,4 +65,8 @@ public class SqlService {
         }
     }
 
+    public int getJohnChildrens(){
+        return childRepository.getChildrenFromJohn();
+    }
+
 }

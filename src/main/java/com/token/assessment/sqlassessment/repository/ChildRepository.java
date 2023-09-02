@@ -14,5 +14,7 @@ public interface ChildRepository extends JpaRepository<Child, Long> {
             nativeQuery = true)
     Collection<Child> findAllChildrenNames();
 
-
+    @Query(value = "SELECT count(father_id) FROM CHILD where father_id = 1",
+            nativeQuery = true)
+    int getChildrenFromJohn();
 }

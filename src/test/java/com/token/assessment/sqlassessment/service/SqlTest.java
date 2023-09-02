@@ -50,4 +50,13 @@ public class SqlTest {
         Assertions.assertIterableEquals(parents, fathersAndMothers);
     }
 
+    @Test
+    @DisplayName("returnJohnChildrensCount")
+    public void shouldReturnJohnChildrensCount() {
+        int children = sqlService.getJohnChildrens();
+
+
+        Assertions.assertEquals(children, 3);
+    }
+
 }

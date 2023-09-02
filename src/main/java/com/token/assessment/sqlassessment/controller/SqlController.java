@@ -56,4 +56,15 @@ public class SqlController {
         List<String> parents = sqlService.getAllFathersAndMothersNames();
         return new ResponseEntity<>(parents, HttpStatus.ACCEPTED);
     }
+
+    @Operation(summary = "return number of john's children")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "202", description = "John childrens count",
+                    content = {@Content(mediaType = "application/json",
+                            schema = @Schema(implementation = int.class))})})
+    @GetMapping(value = "/sql4")
+    public ResponseEntity<Integer> sql4() {
+        int childrenCount = sqlService.getJohnChildrens();
+        return new ResponseEntity<>(childrenCount, HttpStatus.ACCEPTED);
+    }
 }
