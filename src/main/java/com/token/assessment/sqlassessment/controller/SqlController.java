@@ -64,7 +64,18 @@ public class SqlController {
                             schema = @Schema(implementation = int.class))})})
     @GetMapping(value = "/sql4")
     public ResponseEntity<Integer> sql4() {
-        int childrenCount = sqlService.getJohnChildrens();
+        int childrenCount = sqlService.getChildrensFromId(1, "father");
+        return new ResponseEntity<>(childrenCount, HttpStatus.ACCEPTED);
+    }
+
+    @Operation(summary = "return number of Mary's children")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "202", description = "Mary childrens count",
+                    content = {@Content(mediaType = "application/json",
+                            schema = @Schema(implementation = int.class))})})
+    @GetMapping(value = "/sql5")
+    public ResponseEntity<Integer> sql5() {
+        int childrenCount = sqlService.getChildrensFromId(3, "mother");
         return new ResponseEntity<>(childrenCount, HttpStatus.ACCEPTED);
     }
 }

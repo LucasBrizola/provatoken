@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class SqlService {
@@ -65,8 +66,14 @@ public class SqlService {
         }
     }
 
-    public int getJohnChildrens(){
-        return childRepository.getChildrenFromJohn();
+    public int getChildrensFromId(int id, String parent){
+        if(parent.equalsIgnoreCase("father")){
+            return childRepository.getChildrenFromFather(id);
+        }
+        else if(parent.equalsIgnoreCase("mother")){
+            return childRepository.getChildrenFromMother(id);
+        }
+        return 0;
     }
 
 }

@@ -53,10 +53,19 @@ public class SqlTest {
     @Test
     @DisplayName("returnJohnChildrensCount")
     public void shouldReturnJohnChildrensCount() {
-        int children = sqlService.getJohnChildrens();
+        int children = sqlService.getChildrensFromId(1, "father");
 
 
         Assertions.assertEquals(children, 3);
+    }
+
+    @Test
+    @DisplayName("returnMaryChildrensCount")
+    public void shouldReturnMaryChildrensCount() {
+        int children = sqlService.getChildrensFromId(3,"mother");
+
+
+        Assertions.assertEquals(children, 2);
     }
 
 }
