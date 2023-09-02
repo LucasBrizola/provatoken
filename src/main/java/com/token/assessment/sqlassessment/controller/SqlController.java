@@ -45,4 +45,15 @@ public class SqlController {
         List<String> parents = sqlService.getAllFathersNamesWithMoreThanOneChild();
         return new ResponseEntity<>(parents, HttpStatus.ACCEPTED);
     }
+
+    @Operation(summary = "return List of Parents of each children")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "202", description = "parents name returned",
+                    content = {@Content(mediaType = "application/json",
+                            schema = @Schema(implementation = List.class))})})
+    @GetMapping(value = "/sql3")
+    public ResponseEntity<List<String>> sql3() {
+        List<String> parents = sqlService.getAllFathersAndMothersNames();
+        return new ResponseEntity<>(parents, HttpStatus.ACCEPTED);
+    }
 }
